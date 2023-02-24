@@ -83,7 +83,7 @@ def test_availability_user_agreement(reg_page):  # 8 - доступность п
     assert pytest.driver.find_element(By.XPATH, "//h1[contains(text(),'Публичная оферта о заключении Пользовательского соглашения на использование Сервиса «Ростелеком ID»')]")
 
 
-def test_major_elements_reg(reg_page):  # 9 - наличие основных элеменов на странице регистрации
+def test_major_elements_reg(reg_page):  # 9 - проверка наличия основных элеменов на странице регистрации
     pytest.driver.implicitly_wait(10)
     assert pytest.driver.find_element(By.XPATH, "//h1[contains(text(),'Регистрация')]")  # заголовок регистрации
     assert pytest.driver.find_element(By.XPATH, "//p[contains(text(),'Личные данные')]")  # подзаголовок "Личные данные"
@@ -96,7 +96,7 @@ def test_major_elements_reg(reg_page):  # 9 - наличие основных э
     assert pytest.driver.find_element(By.XPATH, "//*[@id='page-right']/div[1]/div[1]/div[1]/form[1]/button[1]")  # кнопка "Зарегистрироваться"
 
 
-def test_minor_elements_reg(reg_page):  # 10 - проверка наличия второстепенных элементов на главной странице
+def test_minor_elements_reg(reg_page):  # 10 - проверка наличия второстепенных элементов на странице регистрации
     pytest.driver.implicitly_wait(10)
     assert pytest.driver.find_element(By.CSS_SELECTOR, "header#app-header > div > div > svg")  # наличие лого в верхнем правом углу
     assert pytest.driver.find_element(By.CSS_SELECTOR, "section#page-left# page-left > div")  # наличие лого и слогана в левой половине страницы
@@ -112,7 +112,7 @@ Cookies
 8 800 100 0 800""")
 
 
-def test_footer_elements_restore_password(restore_password_page):  # 12 - наличие основных элеменов на странице восстановления пароля
+def test_footer_elements_restore_password(restore_password_page):  # 12 - проверка наличия основных элементов на странице восстановления пароля
     pytest.driver.implicitly_wait(10)
     assert pytest.driver.find_element(By.XPATH, "//h1[contains(text(),'Восстановление пароля')]")  # заголовок восстановления пароля
     assert pytest.driver.find_element(By.XPATH, "//p[contains(text(),'Введите данные и нажмите «Продолжить»')]")  # подзаголовок "Введите данные и нажмите «Продолжить»"
@@ -141,14 +141,14 @@ Cookies
 8 800 100 0 800""")
 
 
-def test_restore_password_with_empty_fields(restore_password):  # 15 - восстановление пароля с пустыми полями ввода
+def test_restore_password_with_empty_fields(restore_password):  # 15 - попытка восстановления пароля с пустыми полями ввода
     pytest.driver.implicitly_wait(10)
     reset = pytest.driver.find_element(By.NAME, "reset")  # кнопка "Продолжить"
     reset.click()
     assert pytest.driver.find_element(By.XPATH, "//span[contains(text(),'Введите номер телефона')]")
 
 
-def test_restore_password_correct_number_and_empty_capcha(restore_password_page):  # 16 - восстановление пароля с корректным номером и пустым полем ввода капчи
+def test_restore_password_correct_number_and_empty_capcha(restore_password_page):  # 16 - попытка восстановления пароля с корректным номером и пустым полем ввода капчи
     pytest.driver.implicitly_wait(10)
     pytest.driver.find_element(By.XPATH, "//*[@id='username']").send_keys('0000000000')  # здесь указать корректный номер
     reset = pytest.driver.find_element(By.NAME, "reset")  # кнопка "Продолжить"
@@ -156,7 +156,7 @@ def test_restore_password_correct_number_and_empty_capcha(restore_password_page)
     assert pytest.driver.find_element(By.XPATH, "//span[contains(text(),'Неверный логин или текст с картинки')]")
 
 
-def test_restore_password_back_reg(restore_password_page):  # 17 - возвращение на страницу регистрации
+def test_restore_password_back_reg(restore_password_page):  # 17 - возвращение на страницу регистрации со страницы восстановления пароля
     pytest.driver.implicitly_wait(10)
     back = pytest.driver.find_element(By.NAME, "back_to_login")
     back.click()
